@@ -6,7 +6,7 @@ ENV ARCHS="i386 x86_64 arm arm64 ia64 mips powerpc s390 sparc sh tile"
 
 # Install basic tools
 RUN apt-get update
-RUN apt-get install -y xz-utils lftp curl sudo build-essential
+RUN apt-get install -y xz-utils lftp curl sudo build-essential bc gawk
 RUN curl https://git.kernel.org/cgit/linux/kernel/git/wfg/lkp-tests.git/plain/sbin/make.cross > /usr/bin/make.cross && chmod a+x /usr/bin/make.cross
 
 # Install cross tools for linux
@@ -18,4 +18,4 @@ VOLUME ["/opt/linux"]
 
 COPY cross-build.sh /opt/
 WORKDIR /opt
-CMD ./cross-build.sh
+CMD ./cross-build.sh $ARCHS
