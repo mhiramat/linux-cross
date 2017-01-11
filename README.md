@@ -2,7 +2,7 @@
 
 Linux cross-build environment by docker.
 
-This dockerfile setups a sandbox for cross building environment.
+This dockerfile setups a sandbox for cross building environment based on lkp-test's [make.cross script](https://git.kernel.org/cgit/linux/kernel/git/wfg/lkp-tests.git/plain/sbin/make.cross).
 
 To build the docker image, please run below command.
 ```:bash
