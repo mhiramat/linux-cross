@@ -5,10 +5,9 @@ MAINTAINER Masami Hiramatsu <mhiramat@kernel.org>
 ENV ARCHS="i386 x86_64 arm arm64 ia64 mips powerpc s390 sparc sh tile"
 
 # Install basic tools
-RUN apt-get update && apt-get install -y xz-utils lftp curl sudo build-essential bc gawk
-#RUN curl https://git.kernel.org/cgit/linux/kernel/git/wfg/lkp-tests.git/plain/sbin/make.cross > /usr/bin/make.cross && chmod a+x /usr/bin/make.cross
-COPY make.cross /usr/bin/make.cross
-RUN chmod a+x /usr/bin/make.cross
+RUN apt-get update
+RUN apt-get install -y xz-utils lftp curl sudo build-essential bc gawk
+RUN curl https://git.kernel.org/cgit/linux/kernel/git/wfg/lkp-tests.git/plain/sbin/make.cross > /usr/bin/make.cross && chmod a+x /usr/bin/make.cross
 
 # Install cross tools for linux
 RUN mkdir /tmp/dummy && echo "all:" > /tmp/dummy/Makefile && echo "	true" >> /tmp/dummy/Makefile && cd /tmp/dummy && for arch in $ARCHS; do make.cross ARCH=$arch ; done && cd / && rm -rf /tmp/dummy
