@@ -74,7 +74,7 @@ install_crosstool()
 			local os_arch=x86_64
 		fi
 
-		lftp -c "open $URL && find $os_arch > $list" || exit
+		lftp -c "open $URL/$os_arch/ && find > $list" || exit
 	}
 
 	local file
