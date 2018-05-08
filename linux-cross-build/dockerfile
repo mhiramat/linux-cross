@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER Masami Hiramatsu <mhiramat@kernel.org>
 
 # archs for kretprobe
@@ -6,7 +6,7 @@ ENV ARCHS="i386 x86_64 arm arm64 ia64 mips powerpc s390 sparc sh tile"
 
 # Install basic tools
 RUN apt-get update
-RUN apt-get install -y xz-utils lftp curl sudo build-essential bc gawk
+RUN apt-get install -y xz-utils lftp curl sudo build-essential bc gawk flex bison libssl-dev libelf-dev libisl-dev
 RUN curl -L https://git.kernel.org/pub/scm/linux/kernel/git/wfg/lkp-tests.git/plain/sbin/make.cross > /usr/bin/make.cross && chmod a+x /usr/bin/make.cross
 
 # Install cross tools for linux
