@@ -11,6 +11,9 @@ RUN apt-get install -y xz-utils lftp curl sudo build-essential bc gawk flex biso
 COPY make.cross /usr/bin/make.cross
 RUN chmod a+x /usr/bin/make.cross
 
+# for sh, we will use ubuntu build
+RUN apt install -y gcc-sh4-linux-gnu && mkdir -p /opt/gcc-5/sh4-linux/bin/ && for bin in /usr/bin/sh4-linux-gnu-* ; do ln -s $bin /opt/gcc-5/sh4-linux/bin/sh4-linux-${bin##/usr/bin/sh4-linux-gnu-} ; done
+
 # Install cross tools for linux
 RUN mkdir /tmp/dummy && echo "all:" > /tmp/dummy/Makefile && echo "	true" >> /tmp/dummy/Makefile && cd /tmp/dummy && for arch in $ARCHS; do make.cross ARCH=$arch ; done && cd / && rm -rf /tmp/dummy
 
