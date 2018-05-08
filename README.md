@@ -17,11 +17,10 @@ sudo docker run -ti -v /path/to/your/kernel:/opt/linux linux-cross-build
 
 ## Tips
 
-To speed up the build time, you can mount your tmpfs or localfs to
-the container for build as below
+To speed up the build time, you can mount your tmpfs or localfs to the container for build as below (you should use --rm option so that the container is removed automatically after use, since this container is just for build environment.)
 
 ```:bash
-sudo docker run -ti -v /path/to/your/kernel:/opt/linux -v /path/to/tmpdir:/tmp  linux-cross-build
+sudo docker run -ti --rm -v /path/to/your/kernel:/opt/linux -v /path/to/tmpdir:/tmp  linux-cross-build
 ```
 
 Note that on Fedora or other distros which enables SELinux on docker,
