@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 MAINTAINER Masami Hiramatsu <mhiramat@kernel.org>
 
 # archs for kretprobe
-ENV ARCHS="i386 x86_64 arm arm64 ia64 mips powerpc s390 sparc sh"
+ENV ARCHS="i386 x86_64 arm arm64 ia64 mips powerpc s390 sparc sh openrisc"
 
 # Install basic tools
 RUN apt-get update
