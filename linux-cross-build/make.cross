@@ -64,16 +64,15 @@ install_crosstool()
 {
 	local URL=https://cdn.kernel.org/pub/tools/crosstool/files/bin
 	local list=/tmp/crosstool-files
+	local os_bit="$(getconf LONG_BIT)"
+
+	if [[ $os_bit = 32 ]]; then
+		local os_arch=i686
+	else
+		local os_arch=x86_64
+	fi
 
 	[[ -s $list ]] || {
-		local os_bit="$(getconf LONG_BIT)"
-
-		if [[ $os_bit = 32 ]]; then
-			local os_arch=i686
-		else
-			local os_arch=x86_64
-		fi
-
 		lftp -c "open $URL/$os_arch/ && find > $list" || exit
 	}
 
@@ -84,7 +83,7 @@ install_crosstool()
 		exit 1
 	}
 
-	download_extract "$URL/$file"
+	download_extract "$URL/$os_arch/$file"
 }
 
 install_linaro()
