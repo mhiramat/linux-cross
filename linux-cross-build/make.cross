@@ -73,7 +73,11 @@ install_crosstool()
 	fi
 
 	[[ -s $list ]] || {
-		lftp -c "open $URL/$os_arch/ && find > $list" || exit
+		lftp -c "open $URL/$os_arch/ && find > $list" || :
+		[[ -s $list ]] || {
+			echo "Failed to open $URL/$os_arch/"
+			exit 1
+		}
 	}
 
 	local file
