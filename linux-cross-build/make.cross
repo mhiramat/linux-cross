@@ -146,7 +146,7 @@ setup_crosstool()
 			gcc_arch=
 			;;
 		arm)
-			gcc_arch=arm-unknown-linux-gnueabi
+			gcc_arch=arm-linux-gnueabi
 			;;
 		arm64)
 			gcc_arch=aarch64-linux-gnu
