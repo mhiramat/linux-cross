@@ -174,9 +174,6 @@ setup_crosstool()
 		openrisc)
 			gcc_arch=or1k-linux
 			;;
-		s390)
-			gcc_arch=s390x-linux
-			;;
 		tile|tilegx)
 			gcc_arch=tilegx-linux
 			;;
