@@ -90,23 +90,6 @@ install_crosstool()
 	download_extract "$URL/$os_arch/$file"
 }
 
-install_linaro()
-{
-	local URL='http://releases.linaro.org/components/toolchain/binaries/7.2-2017.11/aarch64-linux-gnu/'
-	local file='gcc-linaro-7.2.1-2017.11-x86_64_aarch64-linux-gnu.tar.xz'
-
-	download_extract "$URL/$file"
-
-	local dir="$GCC_INSTALL_PATH/$(basename $file .tar.xz)"
-	local cross_gcc_version=($dir/bin/${gcc_arch}-gcc-*.*.*)
-	local cross_gcc_version=${cross_gcc_version##*-}
-
-	echo mkdir -p $GCC_INSTALL_PATH/gcc-$cross_gcc_version
-	sudo mkdir -p $GCC_INSTALL_PATH/gcc-$cross_gcc_version
-	echo mv $dir  $GCC_INSTALL_PATH/gcc-$cross_gcc_version/$gcc_arch
-	sudo mv $dir  $GCC_INSTALL_PATH/gcc-$cross_gcc_version/$gcc_arch
-}
-
 install_openrisc()
 {
 	local URL='https://github.com/openrisc/or1k-gcc/releases/download/or1k-5.4.0-20170218'
@@ -128,9 +111,7 @@ install_cross_compiler()
 {
 	install_packages
 
-	if [[ $gcc_arch =~ 'aarch64' ]]; then
-		install_linaro
-	elif [[ $gcc_arch =~ 'or1k' ]]; then
+	if [[ $gcc_arch =~ 'or1k' ]]; then
 		install_openrisc
 	else
 		install_crosstool
@@ -153,7 +134,7 @@ setup_crosstool()
 			gcc_arch=arm-linux-gnueabi
 			;;
 		arm64)
-			gcc_arch=aarch64-linux-gnu
+			gcc_arch=aarch64-linux
 			;;
 		powerpc)
 			gcc_arch=powerpc64-linux
