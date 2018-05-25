@@ -28,6 +28,9 @@ elif [[ ! $ARCH ]]; then
 	export ARCH=x86_64
 fi
 
+# Use 7.3.0 until linux kernel alias warnings is fixed.
+GCC_VER=7.3.0
+
 [[ "$*" =~ ARCH=([a-z0-9_]+) ]] && [[ $ARCH != ${BASH_REMATCH[1]} ]] && {
 	echo "Conflicting ARCH specified! $ARCH ${BASH_REMATCH[1]}"
 	exit 1
@@ -73,9 +76,9 @@ install_crosstool()
 	fi
 
 	[[ -s $list ]] || {
-		lftp -c "open $URL/$os_arch/ && find > $list" || :
+		lftp -c "open $URL/$os_arch/$GCC_VER/ && find > $list" || :
 		[[ -s $list ]] || {
-			echo "Failed to open $URL/$os_arch/"
+			echo "Failed to open $URL/$os_arch/$GCC_VER"
 			exit 1
 		}
 	}
@@ -87,7 +90,7 @@ install_crosstool()
 		exit 1
 	}
 
-	download_extract "$URL/$os_arch/$file"
+	download_extract "$URL/$os_arch/$GCC_VER/$file"
 }
 
 install_openrisc()
