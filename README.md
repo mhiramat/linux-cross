@@ -27,6 +27,12 @@ To build some specific archs in above arch, you can pass it as a parameter like 
 sudo docker run -ti -v /path/to/your/kernel:/opt/linux linux-cross-build arm
 ```
 
+By default, this script compiles kernel with defconfig for each arch. If you want to change the configuration, you can pass "\*config" option as a parameter, e.g. below command build kernels with allmodconfig for arm and arm64.
+
+```:bash
+sudo docker run -ti -v /path/to/your/kernel:/opt/linux linux-cross-build arm allmodconfig arm64
+```
+
 
 ## Tips
 
