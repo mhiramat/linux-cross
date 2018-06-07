@@ -20,6 +20,13 @@ sudo docker run -ti -v /path/to/your/kernel:/opt/linux linux-cross-build
 
 This builds the kernel for "i386 x86\_64 arm arm64 ia64 mips powerpc s390 sparc64 sh openrisc".
 
+To build some specific archs in above arch, you can pass it as a parameter like below.
+
+
+```:bash
+sudo docker run -ti -v /path/to/your/kernel:/opt/linux linux-cross-build arm
+```
+
 
 ## Tips
 

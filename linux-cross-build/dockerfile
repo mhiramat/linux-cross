@@ -23,4 +23,5 @@ VOLUME ["/opt/linux"]
 
 COPY cross-build.sh /opt/
 WORKDIR /opt
-CMD ./cross-build.sh $ARCHS
+ENTRYPOINT [ "/opt/cross-build.sh" ]
+CMD []

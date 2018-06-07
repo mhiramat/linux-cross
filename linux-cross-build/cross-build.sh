@@ -15,7 +15,14 @@ eexit() { # message
   exit 1
 }
 
-for arch in $*; do
+if [ "$*" ]; then
+  ARCHS="$*"
+elif [ -z "$ARCHS" ]; then
+  echo "Error: at least one target arch must be specified"
+  exit 1
+fi
+
+for arch in $ARCHS; do
   ln -sf /opt/linux /tmp/build/source
   echo "Building $arch kernel"
   make.cross ARCH=$arch defconfig
