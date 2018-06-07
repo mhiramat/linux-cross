@@ -9,11 +9,17 @@ To build the docker image, please run below command.
 sudo docker build -t linux-cross-build linux-cross-build/
 ```
 
+Note that this image will consumes more than 3GB, so huge. You should check your disk has enough space.
+
+
 And run the built image with your kernel tree as below
 
 ```:bash
 sudo docker run -ti -v /path/to/your/kernel:/opt/linux linux-cross-build
 ```
+
+This builds the kernel for "i386 x86\_64 arm arm64 ia64 mips powerpc s390 sparc64 sh openrisc".
+
 
 ## Tips
 
