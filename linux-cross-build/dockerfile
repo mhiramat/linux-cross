@@ -17,6 +17,9 @@ RUN apt install -y gcc-sh4-linux-gnu && mkdir -p /opt/gcc-5/sh4-linux/bin/ && fo
 # Install cross tools for linux
 RUN mkdir /tmp/dummy && echo "all:" > /tmp/dummy/Makefile && echo "	true" >> /tmp/dummy/Makefile && cd /tmp/dummy && for arch in $ARCHS; do make.cross ARCH=$arch ; done && cd / && rm -rf /tmp/dummy
 
+# Fixing cc1 error by linking libmpfr.so.6 to libmpfr.so.4 (ubuntu 18.04)
+RUN ln -s /usr/lib/x86_64-linux-gnu/libmpfr.so.6 /usr/lib/x86_64-linux-gnu/libmpfr.so.4
+
 # You must bind your kernel tree under /opt/linux
 RUN mkdir /opt/linux
 VOLUME ["/opt/linux"]
