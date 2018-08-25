@@ -6,7 +6,7 @@ ENV ARCHS="i386 x86_64 arm arm64 ia64 mips powerpc s390 sparc64 sh openrisc"
 
 # Install basic tools
 RUN apt-get update
-RUN apt-get install -y xz-utils lftp curl sudo build-essential bc gawk flex bison libssl-dev libelf-dev libisl-dev u-boot-tools perl python libncurses5-dev libisl15
+RUN apt-get install -y xz-utils lftp curl sudo build-essential bc gawk flex bison libssl-dev libelf-dev libisl-dev u-boot-tools perl python libncurses5-dev libisl15 liblz4-tool
 # RUN curl -L https://git.kernel.org/pub/scm/linux/kernel/git/wfg/lkp-tests.git/plain/sbin/make.cross > /usr/bin/make.cross && chmod a+x /usr/bin/make.cross
 COPY make.cross /usr/bin/make.cross
 RUN chmod a+x /usr/bin/make.cross
